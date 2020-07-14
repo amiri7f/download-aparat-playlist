@@ -17,7 +17,7 @@ if len(argv) == 1 :
                 d.append(str(i.split('-')[-1].split('.')[0]))
         return d
     print("Choise the Quality :"+",".join(Qua(li2)))
-    a2=input("Quality :")
+    quality=input("Quality :")
 elif len(argv) == 2:
     aparatlink=BeautifulSoup(requests.get(argv[1]).content,"html.parser").find_all('a')
     li2=[]
@@ -30,15 +30,15 @@ elif len(argv) == 2:
                 d.append(str(i.split('-')[-1].split('.')[0]))
         return d
     print("Choise the Quality :"+",".join(Qua(li2)))
-    a2=input("Quality :")
+    quality=input("Quality :")
 elif len(argv) == 3:
     aparatlink=BeautifulSoup(requests.get(argv[1]).content,"html.parser").find_all('a')
     li2=[]
     for i in aparatlink:
         li2.append(i.get('href'))
-    a2=argv[2]
+    quality=argv[2]
 else :
-    print('Enter Currect argumant')
+    print('Enter Correct argumant')
 
 # index.html content
 def dl1():
@@ -53,7 +53,7 @@ def dlm():
       <div class="col-md-12 border-bottom pt-3 pb-3"><div class="row align-items-center"><div class="col-md-1 text-center">{}</div><div class="col-md-2"> <a class="dltr" href="{}" target="__blank"><div class="button1"><div class="icon"><div class="arrow"></div> <svg class="line" viewBox="0 0 24 24"></svg></div> دانلود</div> </a></div><div class="col-md-9 text-center h5">{}</div></div></div>
         """
 
-# Extract Download Link 
+# Extract Download Link with spicified quality
 def mylinks(Downlink,DException):
     mainpage=urlparse(Downlink)
     website="{}://{}".format(mainpage[0],mainpage[1]) 
@@ -78,7 +78,7 @@ def mylinks(Downlink,DException):
     newlist.sort()
     return newlist,na
 
-# aparat play list link
+# aparat play list links
 def aparatPlayList(AparatUrl):
     myli=[]
     for i in AparatUrl:
@@ -88,22 +88,25 @@ def aparatPlayList(AparatUrl):
     myli = list(dict.fromkeys(myli))
     return myli
 
-direcory=getcwd()+"/"
+
 def Start():
-    a1=(aparatPlayList(li2))
-    print('Links=',len(a1))
-    chdir(direcory)
+    PlayListLinks=(aparatPlayList(li2))
+    print('Links=',len(PlayListLinks))
+    chdir(getcwd()+"/")
     f=open("index.html","w")
     f.write(dl1())
 
     coun=0
-    for i in a1:
+    for i in  PlayListLinks:
         coun+=1
-        fin=mylinks(i,a2)
-        # print(fin)
+        fin=mylinks(i,quality)
         # Download link
         if len(fin[0]) == 0 :
             print("Download Link Not Found Sorry !")
+            t="""<div class="col-md-12 border-bottom pt-3 pb-3"><div class="row align-items-center"><div class="col-md-1 text-center">{}</div><div class="col-md-2 text-center"> <a class="dltr" href="{}" target="__blank"><div class="btn btn-lg btn-danger"><div class="icon"><div class="arrow"></div> </div> یافت نشد !</div> </a></div><div class="col-md-9 text-center h5">{}</div></div></div>"""
+            nam=fin[1]
+            print(coun,nam)
+            f.write(t.format(str(coun).zfill(3),i,nam))
             continue
         tmp=fin[0][0]
         # Name of Download
