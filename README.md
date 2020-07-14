@@ -1,2 +1,2 @@
-# download-aparat-playlist-
-لینک های دانلود لیست پخش اپارات 
+# download-aparat-playlist
+دریافت لینک های دانلود لیست پخش اپارات 
