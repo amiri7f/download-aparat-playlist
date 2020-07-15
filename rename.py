@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from sys import argv
 
 
-os.chdir(os.getcwd+"/")
+os.chdir(os.getcwd()+"/")
 # Extract Download Link
 def mylinks(Downlink,DException):
     mainpage=urlparse(Downlink)
