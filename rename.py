@@ -6,6 +6,7 @@ from sys import argv
 
 
 os.chdir(os.getcwd()+"/")
+print("Dir: "+os.getcwd()+"/")
 # Extract Download Link
 def mylinks(Downlink,DException):
     mainpage=urlparse(Downlink)
@@ -49,18 +50,33 @@ def aparatPlayList(AparatUrl):
 playlistsurls=(aparatPlayList(argv[1]))
 quality=argv[2]
 
+
+lid=os.listdir()
+lid.sort()
+counter=0
+print("Dir`s files :")
+for i in lid:
+    counter+=1
+    print("{}# ".format(str(counter).zfill(2))+i)
+
 # Rename files
 for i in playlistsurls:
     fin=mylinks(i,quality)
-    # Download link
     tmp=fin[0][0]
     t=tmp.split('/')
-    # Name of Download link
     nam=fin[1]
-    print(t[-1])
-    print(nam+'.mp4')
     oldn=t[-1]
     newn=nam+'.mp4'
+  
+    print(newn)
+    if nam in lid:
+        print("find!; File alrady renamed !")
+        continue
+    elif oldn not in lid:
+        print("The file that you are looking for not found! ")
+        continue
     os.renames(oldn,newn)
+
+    
   
 
