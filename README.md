@@ -2,6 +2,7 @@
 ## دریافت لینک های دانلود لیست پخش آپارات
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](#)
+
 ![](https://upload.wikimedia.org/wikipedia/commons/4/4b/Aparat_logo_%28fa%29_black_2014.png)
 ![python](https://fedoramagazine.org/wp-content/uploads/2015/11/Python_logo-945x400.png "python")
 ## How to use
@@ -13,11 +14,12 @@ To run aparat.py ;
 
 ### step 1
 ------------
-    Install python3 and pip3
+
+Install python3 and pip3
 
 ### step 2
 ------------
-Install requirement library , `requests` and ` bs4`
+Install requirement library , `requests` , ` bs4` and `download`
 ```
    $ pip3 install requests bs4 download
 ```
