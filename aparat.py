@@ -13,16 +13,14 @@ print("Directory: "+getcwd()+"/")
 def mylinks(Downlink,DException):
     mainpage=urlparse(Downlink)
     al0=BeautifulSoup(requests.get(Downlink).content,features="html.parser")
-    al=al0.find_all('a')
     newlist=[]
-    for i in al:
-        if None == i.get("href"):
-            continue
-        elif DException in i.get("href"):
-            if list(i.get("href"))[0] == '/':
-                newlist.append("{}{}".format("{}://{}".format(mainpage[0],mainpage[1]),i.get("href")))
+    for i in al0.find_all('a'):
+        n=i.get("href")
+        if None != n and DException in n:
+            if list(n)[0] == '/':
+                newlist.append("{}{}".format("{}://{}".format(mainpage[0],mainpage[1]),n))
             else:
-                newlist.append(i.get("href"))
+                newlist.append(n)
     newlist.sort()
     na=al0.title.string;na=na.replace("\n","");na=na.replace("        ","")
     return newlist,na
@@ -32,8 +30,9 @@ def aparatPlayList(AparatUrl):
     li=BeautifulSoup(requests.get(AparatUrl).content,"html.parser").find_all('a')
     myli=[]
     for i in li:
-        if "?" in i.get('href') and list(i)[1]== 'v':
-            myli.append("https://www.aparat.com{}".format(i.get('href')).split("?")[0])
+        n=i.get('href')
+        if None != n and "?" in n and list(n)[1]== 'v':
+            myli.append("https://www.aparat.com{}".format(n).split("?")[0])
     # remove dublicated item
     myli = list(dict.fromkeys(myli))
     return myli
