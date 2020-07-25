@@ -19,7 +19,7 @@ Install python3 and pip3
 
 ### step 2
 ------------
-Install requirement library , `requests` , ` bs4` and `download`
+Install requirement library ; `requests` , ` bs4` and `download`
 ```
    $ pip3 install requests bs4 download
 ```
@@ -30,4 +30,6 @@ use python3 to Download
     $ python3 aparat.py YourAparatUrl Quality
 ```
 ####  Example
- python3 aparat.py https://www.aparat.com/v/x45Wr?playlist=206420 720p
+```
+  $ python3 aparat.py https://www.aparat.com/v/x45Wr?playlist=206420 720p
+```
