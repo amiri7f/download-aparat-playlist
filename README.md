@@ -1,5 +1,5 @@
-# Get  Aparat PlayList Downlaod links
-## دریافت لینک های دانلود لیست پخش آپارات
+# Download Aparat PlayList
+## دانلود لیست پخش آپارات
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](#)
 
